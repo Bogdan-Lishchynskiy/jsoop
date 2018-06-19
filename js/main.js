@@ -301,21 +301,21 @@ let users = [{
 }]
 
 const obj = {
-  "first_name": "eeeeee",
-  "last_name": "bbb",
-  "gender": "ccc",
-  "language": "lic"
+  "first_name": "name",
+  "last_name": "lastName",
+  "gender": "gender",
+  "language": "lang"
 }
 const obj2 = {
-  "first_name": "rrrrrr",
-  "last_name": "tttttttt",
-  "gender": "gggggggggggggg",
-  "language": "bbbbbbbbbbbbb"
+  "first_name": "test",
+  "last_name": "testLastName",
+  "gender": "test",
+  "language": "langTest"
 }
 const obj3 = {
-  "last_name": "bbb",
-  "gender": "ccc",
-  "language": "lic"
+  "last_name": "some",
+  "gender": "male",
+  "language": "eng"
 }
 
 class UsersList {
@@ -345,7 +345,7 @@ class UsersList {
     }
   }
 
-  add(newUser) {
+  addNewUser(newUser) {
     if (!newUser.first_name) {
       console.log('cannot add new user because first_name field is require');
       return;
@@ -368,7 +368,7 @@ class UsersList {
   }
 
 
-  remove(id) {
+  removeUserById(id) {
     let filteredArray = this.usersArray.filter(function (obj) {
       if (obj.id == id) {
         return obj;
@@ -391,16 +391,7 @@ class UsersList {
 }
 
 let userList = new UsersList(users); 
-
-// userList.logUsersCount();
-// userList.remove(10);
-// userList.remove(12);
-// userList.remove(14);
-// userList.remove(144);
-// userList.showNames();
-// userList.logUsersCount();
-// userList.showById(14);
-userList.add(obj);
-userList.add(obj2);
-userList.add(obj3);
+userList.addNewUser(obj);
+userList.addNewUser(obj2);
+userList.addNewUser(obj3);
 userList.showNames();
