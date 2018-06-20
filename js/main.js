@@ -301,21 +301,21 @@ let users = [{
 }]
 
 const obj = {
-  "first_name": "name",
-  "last_name": "lastName",
-  "gender": "gender",
-  "language": "lang"
+  "first_name": "Jack",
+  "last_name": "Daniels",
+  "gender": "male",
+  "language": "UK"
 }
 const obj2 = {
-  "first_name": "test",
-  "last_name": "testLastName",
-  "gender": "test",
-  "language": "langTest"
+  "first_name": "John",
+  "last_name": "Snow",
+  "gender": "Male",
+  "language": "Ukr"
 }
 const obj3 = {
   "last_name": "some",
   "gender": "male",
-  "language": "eng"
+  "language": "lang"
 }
 
 class UsersList {
@@ -323,16 +323,12 @@ class UsersList {
     this.usersArray = usersArray;
   }
 
-
   showNames() {
-    // let arrOfFirstName = arr.map((el) => el.first_name);
-    // console.log(arrOfFirstName);    
-    for (let i = 0; i < this.usersArray.length; i++) {
-      console.log(this.usersArray[i].first_name);
-    }
+    const arrayOfUsers = this.usersArray.map(el => el.first_name);
+       console.log(arrayOfUsers);
   }
   showById(id) {
-    let filteredArray = this.usersArray.filter(function (obj) {
+    let filteredArray = this.usersArray.filter(obj => {
       if (obj.id == id) {
         return obj;
       }
@@ -347,29 +343,29 @@ class UsersList {
 
   addNewUser(newUser) {
     if (!newUser.first_name) {
-      console.log('cannot add new user because first_name field is require');
+      console.log(`cannot add new user because first_name field is require`);
       return;
     }
     let newId = this.getMaxId() + 1;
     newUser.id = newId;
     this.usersArray.push(newUser);
-    console.log(`Hi everyone, i am + ${newUser.first_name}`)
+    console.log(`Hi everyone, i am ${newUser.first_name}`)
   }
 
   getMaxId() {
     let maxId = -1;
-    for (let i = 0; i < this.usersArray.length; i++) {
-      if (this.usersArray[i].id > maxId) {
-        maxId = this.usersArray[i].id;
+    this.usersArray.forEach(el => {
+      if (el.id > maxId) {
+        maxId = el.id;
       }
-    }
+    });
     this.maxId = maxId;
     return maxId;
   }
 
 
   removeUserById(id) {
-    let filteredArray = this.usersArray.filter(function (obj) {
+    let filteredArray = this.usersArray.filter(obj => {
       if (obj.id == id) {
         return obj;
       }
@@ -390,8 +386,32 @@ class UsersList {
 
 }
 
-let userList = new UsersList(users); 
-userList.addNewUser(obj);
-userList.addNewUser(obj2);
-userList.addNewUser(obj3);
-userList.showNames();
+let userList = new UsersList(users);
+console.log(userList.showNames().logUsersCount() ); 
+
+  userList.removeUserById(2);
+  userList.removeUserById(3);
+  userList.removeUserById(5);
+
+  userList.showNames();
+  userList.addNewUser(obj2);
+  userList.showNames();
+
+  userList.removeUserById(11);
+  userList.removeUserById(12);
+  userList.removeUserById(13);
+  userList.removeUserById(14);
+
+  userList.showNames();
+
+  userList.addNewUser(obj);
+  userList.addNewUser(obj3);
+
+  userList.showById(50);
+  userList.showById(500);
+
+  userList.logUsersCount();
+  userList.addNewUser(obj);
+
+  userList.showNames();
+  userList.logUsersCount();
