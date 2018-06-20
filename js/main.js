@@ -325,7 +325,8 @@ class UsersList {
 
   showNames() {
     const arrayOfUsers = this.usersArray.map(el => el.first_name);
-       console.log(arrayOfUsers);
+    console.log(arrayOfUsers);
+    return this;
   }
   showById(id) {
     let filteredArray = this.usersArray.filter(obj => {
@@ -337,8 +338,8 @@ class UsersList {
       console.log(filteredArray[0]);
     } else {
       console.log(`Unable to find user with id ${id}`)
-      return '';
     }
+    return this;
   }
 
   addNewUser(newUser) {
@@ -350,6 +351,8 @@ class UsersList {
     newUser.id = newId;
     this.usersArray.push(newUser);
     console.log(`Hi everyone, i am ${newUser.first_name}`)
+    return this;
+
   }
 
   getMaxId() {
@@ -376,42 +379,25 @@ class UsersList {
       console.log(`bye bye user with id ${id}`);
     } else {
       console.log(`Unable to find user with id ${id}`)
-      return ''
     }
+    return this;
+
   }
 
   logUsersCount() {
     console.log(`total user count = ${this.usersArray.length} `);
+    return this;
   }
 
 }
 
 let userList = new UsersList(users);
-console.log(userList.showNames().logUsersCount() ); 
-
-  userList.removeUserById(2);
-  userList.removeUserById(3);
-  userList.removeUserById(5);
-
-  userList.showNames();
-  userList.addNewUser(obj2);
-  userList.showNames();
-
-  userList.removeUserById(11);
-  userList.removeUserById(12);
-  userList.removeUserById(13);
-  userList.removeUserById(14);
-
-  userList.showNames();
-
-  userList.addNewUser(obj);
-  userList.addNewUser(obj3);
-
-  userList.showById(50);
-  userList.showById(500);
-
-  userList.logUsersCount();
-  userList.addNewUser(obj);
-
-  userList.showNames();
-  userList.logUsersCount();
+userList
+  .showNames()
+  .showById(10)
+  .removeUserById(50)
+  .showNames()
+  .addNewUser(obj)
+  .showNames()
+  .logUsersCount()
+  .removeUserById(100);
